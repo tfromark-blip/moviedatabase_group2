@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Plans | WATCHON</title>
+
+    <meta name="description" content="Compare WATCHON subscription plans.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #171717;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+
+        header {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .navbar {
+            width: 80%;
+            max-width: 1300px;
+            height: 82px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #171717;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 17px;
+            color: #555555;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #e50914;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-icon {
+            font-size: 27px;
+            color: #171717;
+        }
+
+        .signin {
+            background: #e50914;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 13px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .signin:hover {
+            background: #ffffff;
+            color: #e50914;
+            border: 1px solid #e50914;
+        }
+
+        /* MAIN */
+
+        main {
+            min-height: 500px;
+        }
+
+        .plans-section {
+            padding: 65px 0 80px;
+        }
+
+        .plans-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .eyebrow {
+            color: #e50914;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .plans-heading h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #171717;
+            margin-bottom: 15px;
+        }
+
+        .plans-heading p {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        /* PLANS TABLE */
+
+        .plans-table-wrapper {
+            width: 80%;
+            margin: auto;
+            overflow-x: auto;
+        }
+
+        .plans-table {
+            width: 100%;
+            min-width: 700px;
+            border-collapse: collapse;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .plans-table th {
+            padding: 17px 15px;
+            background: #ffffff;
+            color: #ffffff;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .plans-table th:first-child {
+            background: #ffffff;
+            color: #171717;
+            text-align: left;
+        }
+
+        .plans-table th:not(:first-child) {
+            background: #e50914;
+        }
+
+        .plans-table td {
+            padding: 17px 15px;
+            border-bottom: 1px solid #eeeeee;
+            color: #171717;
+            font-size: 14px;
+        }
+
+        .plans-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .plans-table tbody tr:hover {
+            background: #ffffff;
+        }
+
+        /* CHECKS AND CROSSES */
+
+        .check {
+            color: #e50914;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #e50914;
+            font-size: 25px;
+        }
+
+        /* PLAN BUTTONS */
+
+        .button-row td {
+            padding-top: 25px;
+            border-bottom: none;
+        }
+
+        .plan-button {
+            display: inline-block;
+            padding: 11px 25px;
+            min-width: 110px;
+            background: #e50914;
+            color: #ffffff;
+            border: 1px solid #e50914;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .plan-button:hover {
+            background: #ffffff;
+            color: #e50914;
+        }
+
+        .plans-note {
+            width: 80%;
+            margin: 30px auto 0;
+            text-align: center;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #171717;
+            color: #ffffff;
+        }
+
+        .footer-container {
+            width: 80%;
+            max-width: 1300px;
+            margin: auto;
+            padding: 65px 0;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-logo {
+            font-size: 30px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .footer-logo span {
+            color: #e50914;
+        }
+
+        .footer-description {
+            max-width: 350px;
+            margin-top: 20px;
+            color: #aaaaaa;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .footer-column h2 {
+            font-size: 15px;
+            letter-spacing: 2px;
+            margin-bottom: 22px;
+            color: #ffffff;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 17px;
+        }
+
+        .footer-column a {
+            font-size: 16px;
+            color: #aaaaaa;
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333333;
+            padding: 25px 10%;
+            color: #aaaaaa;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+
+            .navbar,
+            .footer-container {
+                width: 90%;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                height: 70px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .plans-table-wrapper {
+                width: 100%;
+                padding: 0 15px;
+            }
+
+            .plans-heading h1 {
+                font-size: 30px;
+            }
+
+            .plans-note {
+                width: 90%;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .signin {
+                padding: 10px 14px;
+            }
+
+            .plans-section {
+                padding: 45px 0;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body data-page="plans">
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="navbar">
+
+            <a href="index.html" class="logo inline-flex items-center gap-2 whitespace-nowrap">
+                <img src="images/logo.png" alt="WATCHON logo" class="h-9 w-9 shrink-0 object-contain">WATCH<span>ON</span>
+            </a>
+
+            <nav aria-label="Main navigation">
+
+                <a href="index.html">Home</a>
+                <a href="movies.html">Movies</a>
+                <a href="series.html">Series</a>
+                <a href="documentaries.html">Documentaries</a>
+                <a href="browse.html">Browse</a>
+                <a href="my-list.html">My List</a>
+
+            </nav>
+
+            <div class="header-right">
+
+                <a href="browse.html" class="search-icon" aria-label="Search">
+                    ⌕
+                </a>
+
+                <a href="signin.html" class="signin">
+                    Sign in
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+
+    <main>
+
+        <section class="plans-section">
+
+            <div class="plans-heading">
+
+                <p class="eyebrow">CHOOSE YOUR EXPERIENCE</p>
+
+                <h1>Promotion Plans</h1>
+
+                <p>Compare our available entertainment plans.</p>
+
+            </div>
+
+            <div class="plans-table-wrapper">
+
+                <table class="plans-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>COMPARE ALL PLANS</th>
+                            <th>STANDARD</th>
+                            <th>PREMIUM</th>
+                            <th>FREE</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Monthly subscription cost</td>
+                            <td>M99</td>
+                            <td>M149</td>
+                            <td>M0</td>
+                        </tr>
+
+                        <tr>
+                            <td>Following month</td>
+                            <td>M99</td>
+                            <td>M149</td>
+                            <td>FREE</td>
+                        </tr>
+
+                        <tr>
+                            <td>Streaming quality</td>
+                            <td>HD</td>
+                            <td>Higher quality</td>
+                            <td>Preview</td>
+                        </tr>
+
+                        <tr>
+                            <td>Browse movies and series</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Save titles to My List</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Multiple profiles</td>
+                            <td><span class="cross">×</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">×</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Continue watching</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">×</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Expanded device support</td>
+                            <td><span class="cross">×</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">×</span></td>
+                        </tr>
+
+                        <tr class="button-row">
+
+                            <td></td>
+
+                            <td>
+                                <button class="plan-button"
+                                    onclick="choosePlan('Standard')">
+                                    Get plan
+                                </button>
+                            </td>
+
+                            <td>
+                                <button class="plan-button"
+                                    onclick="choosePlan('Premium')">
+                                    Get plan
+                                </button>
+                            </td>
+
+                            <td>
+                                <a href="browse.html" class="plan-button">
+                                    Explore free
+                                </a>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="plans-note">
+                These are planned subscription options.
+                Payments and subscriptions are not active yet.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="footer-logo inline-flex items-center gap-2 whitespace-nowrap">
+                    <img src="images/logo.png" alt="WATCHON logo" class="h-9 w-9 shrink-0 object-contain">WATCH<span>ON</span>
+                </a>
+
+                <p class="footer-description">
+                    Discover films, series and documentaries, and
+                    find your next favourite.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h2>EXPLORE</h2>
+
+                <ul>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="series.html">Series</a></li>
+                    <li><a href="documentaries.html">Documentaries</a></li>
+                    <li><a href="browse.html">Browse</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h2>ACCOUNT</h2>
+
+                <ul>
+                    <li><a href="signin.html">Sign in</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="my-list.html">My List</a></li>
+                    <li><a href="plans.html">Plans</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h2>SUPPORT</h2>
+
+                <ul>
+                    <li><a href="help.html">Help Centre</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h2>LEGAL</h2>
+
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="cookies.html">Cookie Policy</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 WATCHON. All rights reserved.
+        </div>
+
+    </footer>
+
+    <script>
+
+        function choosePlan(plan) {
+            alert(plan + " subscriptions are not available yet.");
+        }
+
+    </script>
+
+</body>
+
+</html>

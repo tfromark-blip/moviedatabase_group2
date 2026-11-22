@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Title Details | WATCHON</title>
+    <meta name="description" content="View movie and series details on WATCHON.">
+
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="details">
+
+    <div class="min-h-screen">
+
+        <header class="border-b bg-background">
+            <div class="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-4">
+
+                <a href="index.html" class="text-2xl font-extrabold inline-flex items-center gap-2 whitespace-nowrap">
+                    <img src="images/logo.png" alt="WATCHON logo" class="h-9 w-9 shrink-0 object-contain">WATCH<span class="text-primary">ON</span>
+                </a>
+
+                <nav class="flex flex-wrap gap-4">
+                    <a href="index.html">Home</a>
+                    <a href="movies.html">Movies</a>
+                    <a href="series.html">Series</a>
+                    <a href="documentaries.html">Documentaries</a>
+                    <a href="browse.html">Browse</a>
+                    <a href="my-list.html">My List</a>
+                </nav>
+
+                <a href="signin.html" class="bg-primary text-primary-foreground rounded-md px-4 py-2">
+                    Sign in
+                </a>
+
+            </div>
+        </header>
+
+        <main class="flex-1">
+
+            <div id="page-root" class="container mx-auto"></div>
+
+        </main>
+
+        <footer class="bg-ink text-ink-foreground mt-16">
+
+            <div class="container mx-auto px-4 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+
+                <div>
+                    <a href="index.html" class="text-2xl font-extrabold inline-flex items-center gap-2 whitespace-nowrap">
+                        <img src="images/logo.png" alt="WATCHON logo" class="h-9 w-9 shrink-0 object-contain">WATCH<span class="text-primary">ON</span>
+                    </a>
+
+                    <p class="text-sm text-ink-muted mt-3">
+                        Discover films, series and documentaries, and find your next favourite.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold mb-3">Explore</h3>
+
+                    <ul class="space-y-2 text-sm text-ink-muted">
+                        <li><a href="movies.html">Movies</a></li>
+                        <li><a href="series.html">Series</a></li>
+                        <li><a href="documentaries.html">Documentaries</a></li>
+                        <li><a href="browse.html">Browse</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold mb-3">Account</h3>
+
+                    <ul class="space-y-2 text-sm text-ink-muted">
+                        <li><a href="signin.html">Sign in</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="my-list.html">My List</a></li>
+                        <li><a href="plans.html">Plans</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold mb-3">Support</h3>
+
+                    <ul class="space-y-2 text-sm text-ink-muted">
+                        <li><a href="help.html">Help Centre</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold mb-3">Legal</h3>
+
+                    <ul class="space-y-2 text-sm text-ink-muted">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-ink-border px-4 py-5 text-center text-sm text-ink-muted">
+                © 2026 WATCHON. All rights reserved.
+            </div>
+
+        </footer>
+
+    </div>
+
+    <script src="data/catalogue.js"></script>
+    <script src="js/omdb-config.js"></script>
+<script src="js/site.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Watch | WATCHON</title>
+    <meta name="description" content="Watch on WATCHON.">
+
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="watch">
+
+    <div class="flex min-h-screen flex-col">
+
+        <header class="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
+            <div class="container mx-auto flex h-16 items-center justify-between gap-4 px-4">
+
+                <a aria-label="WATCHON home" class="text-2xl font-extrabold tracking-tighter inline-flex items-center gap-2 whitespace-nowrap" href="index.html">
+                    <img src="images/logo.png" alt="WATCHON logo" class="h-9 w-9 shrink-0 object-contain">WATCH<span class="text-primary">ON</span>
+                </a>
+
+                <nav aria-label="Main" class="hidden items-center lg:flex">
+                    <a class="rounded-md px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="index.html">Home</a>
+                    <a class="rounded-md px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="movies.html">Movies</a>
+                    <a class="rounded-md px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="series.html">Series</a>
+                    <a class="rounded-md px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="documentaries.html">Documentaries</a>
+                    <a class="rounded-md px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="browse.html">Browse</a>
+                    <a class="rounded-md px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="my-list.html">My List</a>
+                </nav>
+
+                <div class="flex items-center gap-2">
+
+                    <a aria-label="Search titles" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9" href="browse.html">
+                        <svg aria-hidden="true" class="lucide lucide-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m21 21-4.34-4.34"></path>
+                            <circle cx="11" cy="11" r="8"></circle>
+                        </svg>
+                    </a>
+
+                    <a class="items-center justify-center gap-2 whitespace-nowrap font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary-hover h-8 rounded-md px-3 text-xs hidden sm:inline-flex" href="signin.html">
+                        Sign in
+                    </a>
+
+                    <button aria-expanded="false" aria-label="Open menu" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 lg:hidden">
+                        <svg aria-hidden="true" class="lucide lucide-menu" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 5h16"></path>
+                            <path d="M4 12h16"></path>
+                            <path d="M4 19h16"></path>
+                        </svg>
+                    </button>
+
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1">
+            <div id="page-root"></div>
+        </main>
+
+        <footer class="mt-16 bg-ink text-ink-foreground">
+
+            <div class="container mx-auto grid gap-10 px-4 py-14 md:grid-cols-12">
+
+                <div class="md:col-span-4">
+                    <a class="text-2xl font-extrabold tracking-tighter inline-flex items-center gap-2 whitespace-nowrap" href="index.html">
+                        <img src="images/logo.png" alt="WATCHON logo" class="h-9 w-9 shrink-0 object-contain">WATCH<span class="text-primary">ON</span>
+                    </a>
+                    <p class="mt-3 max-w-xs text-sm leading-6 text-ink-muted">
+                        Discover films, series and documentaries, and find your next favourite.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-4 md:col-span-8">
+
+                    <div>
+                        <h2 class="mb-3 text-xs font-extrabold uppercase tracking-[0.16em]">Explore</h2>
+                        <ul class="flex flex-col gap-2">
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="movies.html">Movies</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="series.html">Series</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="documentaries.html">Documentaries</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="browse.html">Browse</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="mb-3 text-xs font-extrabold uppercase tracking-[0.16em]">Account</h2>
+                        <ul class="flex flex-col gap-2">
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="signin.html">Sign in</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="profile.html">Profile</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="my-list.html">My List</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="plans.html">Plans</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="mb-3 text-xs font-extrabold uppercase tracking-[0.16em]">Support</h2>
+                        <ul class="flex flex-col gap-2">
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="help.html">Help Centre</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="contact.html">Contact</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="about.html">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="mb-3 text-xs font-extrabold uppercase tracking-[0.16em]">Legal</h2>
+                        <ul class="flex flex-col gap-2">
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="privacy.html">Privacy Policy</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="terms.html">Terms of Service</a></li>
+                            <li><a class="text-sm text-ink-muted transition-colors hover:text-ink-foreground" href="cookies.html">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="border-t border-ink-border">
+                <p class="container mx-auto px-4 py-5 text-xs text-ink-muted">
+                    © 2026 WATCHON. All rights reserved.
+                </p>
+            </div>
+
+        </footer>
+
+    </div>
+
+    <script src="data/catalogue.js"></script>
+    <script src="js/omdb-config.js"></script>
+<script src="js/site.js"></script>
+
+</body>
+</html>
+
