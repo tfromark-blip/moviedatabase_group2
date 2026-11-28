@@ -427,8 +427,78 @@
       }
     }
 
-    document.getElementById("browseForm").addEventListener("submit", function (e) {
+    var browseForm = document.getElementById("browseForm");
+
+    browseForm.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      var term = q.value.trim();
+      var submitButton = browseForm.querySelector('button[type="submit"], input[type="submit"]');
+
+      if (!term) {
+        state.q = "";
+        render();
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.setAttribute("data-original-text", submitButton.textContent);
+        submitButton.textContent = "Searching...";
+      }
+
+      document.getElementById("resultCount").textContent = "Searching OMDb...";
+      document.getElementById("results").innerHTML =
+        '<p class="py-8 text-center text-sm text-muted-foreground">Searching for movies...</p>';
+
+      searchOmdbMovies(term)
+        .then(function (movies) {
+          if (!movies.length) {
+            state.q = term;
+            state.type = "";
+            state.genre = "";
+            render();
+            document.getElementById("resultCount").textContent = "0 movies found";
+            document.getElementById("results").innerHTML =
+              emptyState("No movies found", "Try another movie title.");
+            return;
+          }
+
+          movies.forEach(function (movie) {
+            var existingIndex = CATALOGUE.findIndex(function (item) {
+              return item.id === movie.id;
+            });
+
+            if (existingIndex === -1) {
+              CATALOGUE.push(movie);
+            } else {
+              CATALOGUE[existingIndex] = movie;
+            }
+          });
+
+          saveOmdbSearchTitles(movies);
+
+          state.q = term;
+          state.type = "Movie";
+          state.genre = "";
+          state.sort = "";
+          render();
+        })
+        .catch(function (error) {
+          document.getElementById("resultCount").textContent = "Search unavailable";
+          document.getElementById("results").innerHTML = emptyState(
+            "Could not search movies",
+            error && error.message === "OMDb API key is missing"
+              ? "Check that your OMDb API key is set in js/omdb-config.js."
+              : "Please check your internet connection and try again."
+          );
+        })
+        .finally(function () {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = submitButton.getAttribute("data-original-text") || "Search";
+          }
+        });
     });
 
     q.addEventListener("input", function () {
@@ -508,7 +578,7 @@
         '<a class="' + btn("brandOutline", "lg") +
         '" href="' + trailerUrl +
         '" target="_blank" rel="noopener noreferrer">' +
-        ICON.play + " Watch Trailer</a>";
+        ICON.play + " Watch on YouTube</a>";
     }
 
     root.innerHTML =
@@ -1348,6 +1418,102 @@
     });
   }
 
+  function saveOmdbSearchTitles(titles) {
+    try {
+      var saved = JSON.parse(sessionStorage.getItem("watchonOmdbSearchTitles") || "[]");
+      if (!Array.isArray(saved)) saved = [];
+
+      titles.forEach(function (movie) {
+        var index = saved.findIndex(function (item) {
+          return item.id === movie.id;
+        });
+
+        if (index === -1) {
+          saved.push(movie);
+        } else {
+          saved[index] = movie;
+        }
+      });
+
+      sessionStorage.setItem("watchonOmdbSearchTitles", JSON.stringify(saved));
+    } catch (e) {
+      /* session storage unavailable */
+    }
+  }
+
+  function getSavedOmdbSearchTitles() {
+    try {
+      var saved = JSON.parse(sessionStorage.getItem("watchonOmdbSearchTitles") || "[]");
+      return Array.isArray(saved) ? saved : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function searchOmdbMovies(term) {
+    var key = String(window.OMDB_API_KEY || "").trim();
+
+    if (!key || key === "PASTE_YOUR_OMDB_API_KEY_HERE") {
+      return Promise.reject(new Error("OMDb API key is missing"));
+    }
+
+    var searchUrl = "https://www.omdbapi.com/?apikey=" +
+      encodeURIComponent(key) +
+      "&s=" + encodeURIComponent(term) +
+      "&type=movie&page=1";
+
+    return fetch(searchUrl)
+      .then(function (response) {
+        if (!response.ok) throw new Error("OMDb search request failed");
+        return response.json();
+      })
+      .then(function (data) {
+        if (!data || data.Response !== "True" || !Array.isArray(data.Search)) {
+          return [];
+        }
+
+        return Promise.all(data.Search.map(function (item) {
+          var detailUrl = "https://www.omdbapi.com/?apikey=" +
+            encodeURIComponent(key) +
+            "&i=" + encodeURIComponent(item.imdbID) +
+            "&plot=short";
+
+          return fetch(detailUrl)
+            .then(function (response) {
+              if (!response.ok) throw new Error("OMDb details request failed");
+              return response.json();
+            })
+            .then(function (movie) {
+              if (!movie || movie.Response !== "True" || !movie.imdbID) {
+                return null;
+              }
+
+              var year = parseInt(String(movie.Year || item.Year || "").slice(0, 4), 10);
+
+              return {
+                id: "omdb-" + movie.imdbID,
+                title: movie.Title || item.Title,
+                type: "Movie",
+                genre: movie.Genre && movie.Genre !== "N/A" ? movie.Genre : "Movie",
+                year: isNaN(year) ? (movie.Year || item.Year || "") : year,
+                duration: movie.Runtime && movie.Runtime !== "N/A" ? movie.Runtime : "Feature film",
+                rating: movie.Rated && movie.Rated !== "N/A" ? movie.Rated : "Not rated",
+                description: movie.Plot && movie.Plot !== "N/A" ? movie.Plot : "Movie information supplied by OMDb.",
+                poster: movie.Poster && movie.Poster !== "N/A" ? movie.Poster : "",
+                video: "",
+                imdbID: movie.imdbID,
+                source: "OMDb"
+              };
+            })
+            .catch(function () {
+              return null;
+            });
+        })).then(function (movies) {
+          return movies.filter(Boolean);
+        });
+      });
+  }
+
   /* ---------- start ---------- */
 
   function start() {
@@ -1394,12 +1560,21 @@
   loadCatalogue()
     .then(function (result) {
       return loadOmdbTitles().then(function (extraTitles) {
+        var savedSearchTitles = getSavedOmdbSearchTitles();
+        var allExtraTitles = extraTitles.concat(savedSearchTitles);
+
         CATALOGUE = result.data.concat(
-          extraTitles.filter(function (extra) {
-            return !result.data.some(function (original) {
-              return String(original.title).toLowerCase() ===
-                String(extra.title).toLowerCase();
+          allExtraTitles.filter(function (extra, index) {
+            var duplicateInCatalogue = result.data.some(function (original) {
+              return String(original.id) === String(extra.id) ||
+                String(original.title).toLowerCase() === String(extra.title).toLowerCase();
             });
+
+            var duplicateInExtras = allExtraTitles.findIndex(function (item) {
+              return String(item.id) === String(extra.id);
+            }) !== index;
+
+            return !duplicateInCatalogue && !duplicateInExtras;
           })
         );
 
